@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+</head>
+
+<body>
+    <form action="submit" method="post">
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" id="name">
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location">
+        <p>Check your favorite languages</p>
+        <div>
+            <label for="language1">Python</label>
+            <input type="checkbox" name="language1" id="language1">
+            <label for="language2">C+</label>
+            <input type="checkbox" name="language2" id="language2">
+            <label for="language3">Java</label>
+            <input type="checkbox" name="language3" id="language3">
+        </div>
+        <p>Gender:</p>
+        <div>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </div>
+        <label for="comments">Comments:</label>
+        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
