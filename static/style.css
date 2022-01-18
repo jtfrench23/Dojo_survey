@@ -1,13 +1,4 @@
-.box{
-    display: flex;
-    align-items: center;
-    border: 2px solid black !important;
-    width: 50vw;
-    height: 75vh;
-    margin: 20px auto;
-    padding: 10px 150px;
-    overflow-y: scroll;
-}
+
 
 .box2{
     margin: 0 auto;
