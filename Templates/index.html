@@ -37,11 +37,18 @@
                     <label for="other">Other</label>
                 </div>
                 <label for="comments">Comments:</label>
-                <textarea name="comments" id="comments" cols="30" rows="10" class="col-12"></textarea>
+                <textarea name="comment" id="comment" cols="30" rows="10" class="col-12"></textarea>
                 <button type="submit">Submit</button>
             </div>
         </form>
     </div>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 
 </html>

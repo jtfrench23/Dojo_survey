@@ -1,4 +1,5 @@
 from config.mysqlconnection import connectToMySQL
+from flask import flash
 
 #class model for controller
 class Survey:
@@ -10,28 +11,28 @@ class Survey:
         self.comment=data['comment']
         self.created_at=data['created_at']
         self.updated_at=data['updated_at']
-#     @classmethod
-#     def get_all(cls):
-#         query= "SELECT * FROM users;"
-#         result= connectToMySQL('users_schema').query_db(query)
-#         users=[]
-#         for user in result:
-#             users.append(cls(user))
-#         return users
+    @classmethod
+    def get_all(cls):
+        query= "SELECT * FROM surveys;"
+        result= connectToMySQL('dojo_survey_schema').query_db(query)
+        surveys=[]
+        for user in result:
+            surveys.append(cls(user))
+        return surveys
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO users ( name , location , language , comment , created_at, updated_at ) VALUES ( %(name)s , %(location)s , %(language)s , %(comment)s , NOW() , NOW() );"
+        query = "INSERT INTO dojos ( name , location , language , comment  ) VALUES ( %(name)s , %(location)s , %(language)s , %(comment)s);"
         return connectToMySQL('dojo_survey_schema').query_db( query, data )
-    #     @classmethod
-    #     def delete(cls, data):
-    #         query = "DELETE FROM users WHERE id = (%(id)s);"
-    #         return connectToMySQL('users_schema').query_db(query, data)
-    #     @classmethod
-    #     def lastIndex(cls):
-    #         query="SELECT * FROM users WHERE id=(SELECT max(id) FROM users);"
-    #         user=connectToMySQL('users_schema').query_db(query)
-    #         return user
-    #     @classmethod
-    #     def update(cls, data):
-    #         query = "UPDATE users SET email = %(email)s, first_name=%(fname)s, last_name=%(lname)s WHERE id = %(id)s;"
-    #         return connectToMySQL('users_schema').query_db( query, data )
+    @staticmethod
+    def validate_survey(survey):
+        is_valid = True # we assume this is true
+        if len(survey['name']) < 3:
+            flash("Name must be at least 3 characters.")
+            is_valid = False
+        if len(survey['location']) < 3:
+            flash("location must be at least 3 characters.")
+            is_valid = False
+        # if int(survey['language']) < 3:
+        #     flash("language must be selected")
+        #     is_valid = False
+        return is_valid
